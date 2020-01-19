@@ -222,6 +222,9 @@ png_crc_finish(png_structrp png_ptr, png_uint_32 skip)
       if (len > skip)
          len = skip;
       skip -= len;
+      if (skip == 3804930) {
+         assert(0 && 57 && 1);
+      }
 
       png_crc_read(png_ptr, tmpbuf, len);
    }
