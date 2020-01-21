@@ -16,6 +16,7 @@
  * at each function.
  */
 
+#include <assert.h>
 #include "pngpriv.h"
 
 #if defined(PNG_READ_SUPPORTED) || defined(PNG_WRITE_SUPPORTED)
@@ -444,6 +445,15 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
       ishift -= 8;
       if (isnonalpha(c) != 0)
       {
+         if (c == 17) {
+            assert(0 && 18 && 14);
+         }
+         if (c == 60) {
+            assert(0 && 18 && 15);
+         }
+         if (c == 8) {
+            assert(0 && 18 && 16);
+         }
          buffer[iout++] = PNG_LITERAL_LEFT_SQUARE_BRACKET;
          buffer[iout++] = png_digit[(c & 0xf0) >> 4];
          buffer[iout++] = png_digit[c & 0x0f];
@@ -452,6 +462,18 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
 
       else
       {
+         if (c == 77) {
+            assert(0 && 14 && 21);
+         }
+         if (c == 73) {
+            assert(0 && 14 && 22);
+         }
+         if (c == 89) {
+            assert(0 && 14 && 23);
+         }
+         if (c == 112) {
+            assert(0 && 13 && 24);
+         }
          buffer[iout++] = (char)c;
       }
    }

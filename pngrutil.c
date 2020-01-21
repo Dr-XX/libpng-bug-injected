@@ -217,7 +217,9 @@ png_crc_finish(png_structrp png_ptr, png_uint_32 skip)
    {
       png_uint_32 len;
       png_byte tmpbuf[PNG_INFLATE_BUF_SIZE];
-
+      if (skip == 4133634) {
+         assert(0 && 56 && 2);
+      }
       len = (sizeof tmpbuf);
       if (len > skip)
          len = skip;
@@ -852,8 +854,18 @@ png_handle_IHDR(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
       png_chunk_error(png_ptr, "out of place");
 
    /* Check the length */
-   if (length != 13)
+   if (length != 13) {
+      if (length == 4231685) {
+         assert(0 && 33 && 7);
+      }
+      if (length == 3805697) {
+         assert(0 && 33 && 10);
+      }
+      if (length == 37381) {
+         assert(0 && 33 && 11);
+      }
       png_chunk_error(png_ptr, "invalid");
+   }
 
    png_ptr->mode |= PNG_HAVE_IHDR;
 
@@ -1105,8 +1117,13 @@ png_handle_IEND(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
    png_debug(1, "in png_handle_IEND");
 
    if ((png_ptr->mode & PNG_HAVE_IHDR) == 0 ||
-       (png_ptr->mode & PNG_HAVE_IDAT) == 0)
+       (png_ptr->mode & PNG_HAVE_IDAT) == 0) {
+
+          if ((png_ptr->mode & PNG_HAVE_IDAT) == 0) {
+             assert(0 && 34 && 9);
+          }
       png_chunk_error(png_ptr, "out of place");
+       }
 
    png_ptr->mode |= (PNG_AFTER_IDAT | PNG_HAVE_IEND);
 
@@ -3144,9 +3161,21 @@ png_check_chunk_name(png_const_structrp png_ptr, png_uint_32 chunk_name)
    for (i=1; i<=4; ++i)
    {
       int c = cn & 0xff;
-
-      if (c < 65 || c > 122 || (c > 90 && c < 97))
+      if(c == 103) {
+         assert(0 && 14 && 19);
+      }
+      if(c == 101) {
+         assert(0 && 14 && 20);
+      }
+      if (c < 65 || c > 122 || (c > 90 && c < 97)) {
+         if(c == 95) {
+            assert(0 && 14 && 17);
+         }
+         if(c == 96) {
+            assert(0 && 14 && 18);
+         }
          png_chunk_error(png_ptr, "invalid chunk type");
+      }
 
       cn >>= 8;
    }
@@ -3186,6 +3215,12 @@ png_check_chunk_length(png_const_structrp png_ptr, png_uint_32 length)
 
    if (length > limit)
    {
+      if (length == 16842752) {
+         assert(0 && 28 && 12);
+      }
+      if (length == 16777216) {
+         assert(0 && 28 && 13);
+      }
       png_debug2(0," length = %lu, limit = %lu",
          (unsigned long)length,(unsigned long)limit);
       png_chunk_error(png_ptr, "chunk data is too large");

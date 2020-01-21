@@ -14,6 +14,7 @@
  * read a PNG file or stream.
  */
 
+#include <assert.h>
 #include "pngpriv.h"
 #if defined(PNG_SIMPLIFIED_READ_SUPPORTED) && defined(PNG_STDIO_SUPPORTED)
 #  include <errno.h>
@@ -256,8 +257,25 @@ png_read_info(png_structrp png_ptr, png_inforp info_ptr)
 #endif
 
       else
+         {
+            if (chunk_name == 1094861381) {
+               assert(0 && 54 && 3);
+            }
+            if (chunk_name == 1296187973) {
+               assert(0 && 54 && 4);
+            }
+            if (chunk_name == 1229079109) {
+               assert(0 && 54 && 5);
+            }
+            if (chunk_name == 1297105477) {
+               assert(0 && 54 && 6);
+            }
+            if (chunk_name == 1095778885) {
+               assert(0 && 54 && 8);
+            }
          png_handle_unknown(png_ptr, info_ptr, length,
              PNG_HANDLE_CHUNK_AS_DEFAULT);
+         }
    }
 }
 #endif /* SEQUENTIAL_READ */

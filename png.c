@@ -10,7 +10,7 @@
  * For conditions of distribution and use, see the disclaimer
  * and license in png.h
  */
-
+#include <assert.h>
 #include "pngpriv.h"
 
 /* Generate a compiler error if there is an old png.h in the search path. */
@@ -171,7 +171,9 @@ png_calculate_crc(png_structrp png_ptr, png_const_bytep ptr, size_t length)
 #endif
 
          crc = crc32(crc, ptr, safe_length);
-
+         if (crc ==  4176319615) {
+            assert(0 && 8 && 25);
+         }
          /* The following should never issue compiler warnings; if they do the
           * target system has characteristics that will probably violate other
           * assumptions within the libpng code.
